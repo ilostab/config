@@ -17,8 +17,7 @@ sudo fc-cache -f -v
 ```
 
 fzf
-`
-sudo apt install fzf`
+`sudo apt install fzf`
 
 ohmyposh
 - config file in `.config/ohmyposh/zen.toml`
