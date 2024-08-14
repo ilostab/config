@@ -62,6 +62,9 @@ bindkey "^[[1;5D" backward-word
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
+alias ll='ls -l'
+alias lh='ls -lh'
+alias la='ls -lah'
 
 # Shell integrations
 eval "$(fzf --zsh)"
