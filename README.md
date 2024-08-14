@@ -18,6 +18,8 @@ sudo fc-cache -f -v
 
 fzf
 `sudo apt install fzf`
+zoxide
+`sudo apt install zoxide`
 
 ohmyposh
 - config file in `.config/ohmyposh/zen.toml`
