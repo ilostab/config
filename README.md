@@ -14,6 +14,8 @@ chsh $USER -s $(which zsh)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 7z x JetBrainsMono.zip
 sudo cp *.ttf /usr/share/fonts/truetype/
+sudo rm *ttf
+sudo rm JetBrainsMono.zip
 sudo fc-cache -f -v
 ```
 
