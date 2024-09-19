@@ -7,6 +7,7 @@ sudo apt update
 sudo apt install zsh
 chsh $USER -s $(which zsh)
 ```
+- reboot system for change shell to take effect
 - Download .zshrc from this repo
 - Set the Font to be `JetBrainsMono Nerd Font`
 ```
