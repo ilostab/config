@@ -11,6 +11,8 @@ chsh $USER -s $(which zsh)
 - Download .zshrc from this repo
 - Set the Font to be `JetBrainsMono Nerd Font`
 ```
+mkdir font && cd font
+sudo apt install 7zip wget curl
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 7z x JetBrainsMono.zip
 sudo cp *.ttf /usr/share/fonts/truetype/
