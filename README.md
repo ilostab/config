@@ -2,7 +2,10 @@
 
 Based on dreams of autonomy 🌟
 
-## 🛠️ Setup
+## 🛠️ Quick Setup
+`wget https://raw.githubusercontent.com/ilostab/config/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh`
+
+## 🛠️ Manual Setup
 
 ### 🐚 Zsh Installation
 
