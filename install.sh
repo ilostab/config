@@ -80,7 +80,8 @@ else
 
   # Add fzf to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
-
+  export PATH=\"\$PATH:\$HOME/.fzf/bin\
+  
   echo "🔍 fzf installed."
 fi
 
@@ -107,8 +108,6 @@ else
   echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"  # Changed line
   # Install oh-my-posh (silenced)
   brew install jandedobbeleer/oh-my-posh/oh-my-posh > /dev/null 2>&1
-
-  
 
   # Add oh-my-posh to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
@@ -154,12 +153,13 @@ else
 fi
 
 # Instructions for installing tmux plugins
-echo "🔌 To install tmux plugins, start tmux and press PREFIX + I."
+echo "🔌 To "
 
 # --- Reboot Prompt ---
 
-read -p "Do you want to reboot now? (y/n) " -n
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  sudo reboot
-fi
+echo "🛠️ Terminal Environment installed 🛠️"
+echo "-----------------------------------"
+echo "🛠️ reboot system"
+echo "🛠️ zsh will install on next run"
+echo "🛠️ install tmux plugins by starting tmux and press PREFIX + I."
+echo "-----------------------------------"
