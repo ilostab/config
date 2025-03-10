@@ -9,6 +9,7 @@ echo "🛠️ Tmux with config in tmux.conf"
 echo "🛠️ Homebrew"
 echo "🛠️ JetBrainsMono Nerd Font"
 echo "🛠️ fzf"
+echo "-----------------------------------"
 # --- Idempotency Checks ---
 
 # Check if Zsh is already the default shell
