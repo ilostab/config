@@ -12,7 +12,8 @@ else
   # Update and install packages (silenced)
   sudo apt update > /dev/null 2>&1
   sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential > /dev/null 2>&1
-
+  
+  echo "Moving to zsh shell. You will be promted for sudo"
   # Change shell to zsh
   chsh $USER -s $(which zsh)
 
