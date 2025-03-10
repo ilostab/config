@@ -17,12 +17,12 @@ if [[ "$SHELL" == *zsh* ]]; then
   echo "😴 Zsh is already the default shell. Skipping."
 else
   echo "⏳ Installing packages... This may take a while."
-  echo "👑 You might be promted for sudo"
+  echo "👑 You might be promted for sudo (reason: apt update)"
   # Update and install packages (silenced)
   sudo apt update > /dev/null 2>&1
   sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential > /dev/null 2>&1
 
-  echo "👑 Moving to zsh terminal. You will be promted for sudo"
+  echo "👑 Moving to zsh terminal. You will be promted for sudo (reason: zsh)"
   # Change shell to zsh
   chsh $USER -s $(which zsh)
 
