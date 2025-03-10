@@ -88,7 +88,7 @@ else
   echo >> ~/.zshrc
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
+  
   echo "🍺 Homebrew installed."
 fi
 
@@ -99,6 +99,8 @@ else
   echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"  # Changed line
   # Install oh-my-posh (silenced)
   brew install jandedobbeleer/oh-my-posh/oh-my-posh > /dev/null 2>&1
+
+  
 
   # Add oh-my-posh to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
@@ -148,7 +150,7 @@ echo "🔌 To install tmux plugins, start tmux and press PREFIX + I."
 
 # --- Reboot Prompt ---
 
-read -p "Do you want to reboot now? (y/n) " -n 1 -r
+read -p "Do you want to reboot now? (y/n) " -n
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   sudo reboot
