@@ -1,4 +1,4 @@
-# ⚙️ config 🚀
+# ⚙️ config
 
 Based on dreams of autonomy 🌟
 
