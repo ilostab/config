@@ -37,7 +37,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ```
 - 💡 Tip: You can move or copy the fzf binary to /usr/bin for system-wide access or add it to path in .zshrc
 
-zoxide
+### 🔍 zoxide
 `sudo apt install zoxide`
 
 ### ✨ oh-my-posh (Custom Terminal Prompt)
