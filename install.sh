@@ -96,14 +96,14 @@ fi
 if command -v oh-my-posh > /dev/null 2>&1; then
   echo "😴 oh-my-posh is already installed. Skipping."
 else
-  echo "🍺 Brewing Oh My Posh..."  # Changed line
+  echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"  # Changed line
   # Install oh-my-posh (silenced)
   brew install jandedobbeleer/oh-my-posh/oh-my-posh > /dev/null 2>&1
 
   # Add oh-my-posh to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
 
-  echo "✨ Oh My Posh brewed and ready."  # Changed line
+  echo "🍺 Oh My Posh brewed and ready."  # Changed line
 fi
 
 # Check if tmux plugin manager is already installed
@@ -118,16 +118,13 @@ else
 fi
 
 
-# --- Environmental Variables ---
-echo "🏡 Home directory: $HOME"
-
 # --- Verification Tests ---
 
 echo "✅ Verifying installations..."
 
 # Test fzf
 if fzf --version > /dev/null 2>&1; then
-  echo "🎉 fzf is working correctly!"
+  echo "🎉 fzf is working correctly! Test with Ctrl+r"
 else
   echo "❌ fzf installation failed!"
 fi
