@@ -1,7 +1,14 @@
 #!/bin/bash
 
-echo "🛠️ Setting up terminal environment"
-
+echo "🛠️ Setting up terminal environment 🛠️"
+echo "-----------------------------------"
+echo "This will setup:"
+echo "🛠️ zsh with config in zshrc"
+echo "🛠️ oh-my-posh with config in ten.toml"
+echo "🛠️ Tmux with config in tmux.conf"
+echo "🛠️ Homebrew"
+echo "🛠️ JetBrainsMono Nerd Font"
+echo "🛠️ fzf"
 # --- Idempotency Checks ---
 
 # Check if Zsh is already the default shell
