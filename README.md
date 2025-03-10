@@ -11,7 +11,7 @@ sudo apt update
 sudo apt install zsh
 chsh $USER -s $(which zsh)
 ```
--⚠️ Reboot your system for the shell change to take effect.
+- ⚠️ Reboot your system for the shell change to take effect.
 - 📥 Download the .zshrc file from this repository.
 
 ### ✒️ Font Setup: JetBrainsMono Nerd Font
