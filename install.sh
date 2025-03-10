@@ -20,7 +20,7 @@ else
   echo "👑 You might be promted for sudo (reason: apt update)"
   # Update and install packages (silenced)
   sudo apt update > /dev/null 2>&1
-  sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential > /dev/null 2>&1
+  sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential git > /dev/null 2>&1
 
   echo "👑 Moving to zsh terminal. You will be promted for sudo (reason: zsh)"
   # Change shell to zsh
