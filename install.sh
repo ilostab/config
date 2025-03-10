@@ -152,14 +152,11 @@ else
   echo "🚫 tmux installation failed!"
 fi
 
-# Instructions for installing tmux plugins
-echo "🔌 To "
-
 # --- Reboot Prompt ---
 
-echo "🛠️ Terminal Environment installed 🛠️"
-echo "-----------------------------------"
+echo "✅ Terminal Environment installed ✅"
+echo "------------NEXT STEPS ---------------"
 echo "🛠️ reboot system"
-echo "🛠️ zsh will install on next run"
+echo "🛠️ zsh will install on next startup"
 echo "🛠️ install tmux plugins by starting tmux and press PREFIX + I."
 echo "-----------------------------------"
