@@ -1,15 +1,21 @@
-# config
-Based on Dreams of Autonomy 
+# ⚙️ config 🚀
 
-# Setup 
+Based on dreams of autonomy 🌟
+
+## 🛠️ Setup
+
+### 🐚 Zsh Installation
+
 ```
 sudo apt update
 sudo apt install zsh
 chsh $USER -s $(which zsh)
 ```
-- reboot system for change shell to take effect
-- Download .zshrc from this repo
-- Set the Font to be `JetBrainsMono Nerd Font`
+-⚠️ Reboot your system for the shell change to take effect.
+- 📥 Download the .zshrc file from this repository.
+
+### ✒️ Font Setup: JetBrainsMono Nerd Font
+
 ```
 mkdir font && cd font
 sudo apt install 7zip wget curl
@@ -21,25 +27,28 @@ sudo rm JetBrainsMono.zip
 sudo fc-cache -f -v
 ```
 
-fzf
+### 🔍 fzf (Fuzzy Finder)
 ```
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
-- installs in user directory. cp or mv to /urs/bin
+- 💡 Tip: You can move or copy the fzf binary to /usr/bin for system-wide access or add it to path in .zshrc
 
 zoxide
 `sudo apt install zoxide`
 
-ohmyposh
-- config file in `.config/ohmyposh/zen.toml`
-- - installs in user directory. cp or mv to /urs/bin
+### ✨ oh-my-posh (Custom Terminal Prompt)
+
+- 📝 Configuration file: .config/ohmyposh/zen.toml
+- 📦 Installation (using Homebrew on Linux):
+- 💡 Tip: You can move or copy the oh-my-posh binary to /usr/bin for system-wide access or add it to path in .zshrc. 
+    
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
-tmux
+### 🖥️ tmux (Terminal Multiplexer)
 - `sudo apt install tmux`
 - create .config/tmux/tmux.conf and copy tmux.conf from this repo
 - `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-- Install plugins: tmux --> PREFIX + I
+- 🚀 Install plugins: Inside tmux, press PREFIX + I (where PREFIX is usually Ctrl+b, here Ctrl+a).
