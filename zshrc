@@ -1,10 +1,15 @@
 #Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+# Add necessary directories to PATH
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$HOME/.fzf/bin"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -26,7 +31,7 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-# Run oh-my-posh
+# Run oh-my-posh (now after PATH is set)
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # Keybindings
@@ -70,6 +75,6 @@ alias la='ls -lah'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Removed duplicate eval and export commands
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
