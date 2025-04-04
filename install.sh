@@ -68,13 +68,9 @@ else
   echo "🔍 Installing fzf..."
   git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
   yes y | ~/.fzf/install > .fzf.error 2>&1
-  if [[ -s .fzf.error ]]; then
-    echo "❌ fzf installation encountered errors."
-  else
-    echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
-    export PATH="$PATH:$HOME/.fzf/bin"
-    echo "🔍 fzf installed."
-  fi
+  echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
+  export PATH="$PATH:$HOME/.fzf/bin"
+  echo "🔍 fzf installed."
 fi
 
 # Check if Homebrew is already installed
@@ -90,7 +86,6 @@ else
     echo "🍺 Homebrew installed."
   else
     echo "❌ Homebrew install failed!"
-  fi
   fi
 fi
 
