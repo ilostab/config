@@ -66,8 +66,8 @@ if command -v fzf > /dev/null 2>&1; then
   echo "😴 fzf is already installed. Skipping."
 else
   echo "🔍 Installing fzf..."
-  git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
-  yes y | ~/.fzf/install > .fzf.error 2>&1
+  git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > .fzf.output 2>&1
+  yes y | ~/.fzf/install >> .fzf.output 2>&1
   echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
   export PATH="$PATH:$HOME/.fzf/bin"
   echo "🔍 fzf installed."
@@ -78,7 +78,7 @@ if command -v brew > /dev/null 2>&1; then
   echo "😴 Homebrew is already installed. Skipping."
 else
   echo "🍺 Installing Homebrew..."
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > .homebrew.error 2>&1
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > .homebrew.output 2>&1
   if command -v brew > /dev/null 2>&1; then
     echo >> ~/.zshrc
     echo 'eval "$($(which brew) shellenv)"' >> ~/.zshrc
@@ -94,7 +94,7 @@ if command -v oh-my-posh > /dev/null 2>&1; then
   echo "😴 oh-my-posh is already installed. Skipping."
 else
   echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"
-  brew install jandedobbeleer/oh-my-posh/oh-my-posh > .oh-my-posh.error 2>&1
+  brew install jandedobbeleer/oh-my-posh/oh-my-posh > .oh-my-posh.output 2>&1
   echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
   echo "🍺 Oh My Posh brewed and ready."
 fi
@@ -104,7 +104,7 @@ if [[ -d ~/.tmux/plugins/tpm ]]; then
   echo "😴 tmux plugin manager is already installed. Skipping."
 else
   echo "🔌 Installing tmux plugin manager..."
-  git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > .tmux-tpm.error 2>&1
+  git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > .tmux-tpm.output 2>&1
   echo "🔌 tmux plugin manager installed."
 fi
 
@@ -142,32 +142,32 @@ echo "🛠️ zsh will install on next startup"
 echo "🛠️ install tmux plugins by starting tmux and press PREFIX + I."
 echo "-----------------------------------"
 
-# --- Error Display ---
+# --- Output Display ---
 
-echo "-------------------Error Logs-------------------"
+echo "-------------------Installation Output Logs-------------------"
 
-if [[ -s .fzf.error ]]; then
-  echo "❌ fzf error log:"
-  cat .fzf.error
-  rm -f .fzf.error
+if [[ -f .fzf.output ]]; then
+  echo "🔍 fzf output log:"
+  cat .fzf.output
+  rm -f .fzf.output
 fi
 
-if [[ -s .homebrew.error ]]; then
-  echo "❌ Homebrew error log:"
-  cat .homebrew.error
-  rm -f .homebrew.error
+if [[ -f .homebrew.output ]]; then
+  echo "🍺 Homebrew output log:"
+  cat .homebrew.output
+  rm -f .homebrew.output
 fi
 
-if [[ -s .oh-my-posh.error ]]; then
-  echo "⚠️ oh-my-posh error log:"
-  cat .oh-my-posh.error
-  rm -f .oh-my-posh.error
+if [[ -f .oh-my-posh.output ]]; then
+  echo "🎨 oh-my-posh output log:"
+  cat .oh-my-posh.output
+  rm -f .oh-my-posh.output
 fi
 
-if [[ -s .tmux-tpm.error ]]; then
-  echo "🚫 tmux plugin manager error log:"
-  cat .tmux-tpm.error
-  rm -f .tmux-tpm.error
+if [[ -f .tmux-tpm.output ]]; then
+  echo "🔌 tmux plugin manager output log:"
+  cat .tmux-tpm.output
+  rm -f .tmux-tpm.output
 fi
 
-echo "------------------------------------------------"
+echo "-------------------------------------------------------------"
