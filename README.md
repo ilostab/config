@@ -3,7 +3,7 @@
 Based on dreams of autonomy 🌟
 
 ## 🛠️ Quick Setup
-`wget https://raw.githubusercontent.com/ilostab/config/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh`
+`wget https://raw.githubusercontent.com/ilostab/config/refs/heads/main/install.sh > /dev/null 2>&1 && chmod +x install.sh && ./install.sh`
 
 ## 🛠️ Manual Setup
 
