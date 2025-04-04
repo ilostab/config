@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo ""
 echo "🛠️ Setting up terminal environment 🛠️"
 echo "-----------------------------------"
 echo "This will setup:"
@@ -24,7 +23,6 @@ if [[ "$SHELL" == *zsh* ]]; then
   echo "😴 Zsh is already the default shell. Skipping."
 else
   echo "👑 Moving to zsh terminal. You will be promted for sudo (reason: zsh)"
-  # Change shell to zsh
   chsh $USER -s $(which zsh)
   echo "🎉 Zsh installed and set as default shell."
 fi
@@ -34,7 +32,6 @@ if fc-list | grep -q "JetBrainsMono Nerd Font"; then
   echo "😴 Nerd Font is already installed. Skipping."
 else
   echo "🤓 Installing Nerd Font..."
-  # Download and install Nerd Font (silenced)
   mkdir -p font && cd font
   wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
   7z x JetBrainsMono.zip > /dev/null 2>&1
@@ -50,17 +47,14 @@ fi
 
 echo "📥 Downloading and configuring files..."
 
-# Download the config files from GitHub (silenced)
 git clone -q https://github.com/ilostab/config.git
 
-# Copy the config files to the home directory (using correct paths)
-cp config/zshrc ~/.zshrc  # Corrected line
+cp config/zshrc ~/.zshrc
 mkdir -p ~/.config/tmux
-cp config/tmux.conf ~/.config/tmux/  # Corrected line
+cp config/tmux.conf ~/.config/tmux/
 mkdir -p $HOME/.config/ohmyposh/
-cp config/zen.toml $HOME/.config/ohmyposh/zen.toml  # Corrected line
+cp config/zen.toml $HOME/.config/ohmyposh/zen.toml
 
-# Remove the cloned repository
 rm -rf config
 
 echo "📂 Configuration files copied."
@@ -72,14 +66,15 @@ if command -v fzf > /dev/null 2>&1; then
   echo "😴 fzf is already installed. Skipping."
 else
   echo "🔍 Installing fzf..."
-  # Install fzf (silenced)
-  git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  # Automate fzf installation prompts
-  yes y | ~/.fzf/install > /dev/null 2>&1
-  # Add fzf to PATH in ~/.zshrc
-  echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
-  export PATH="$PATH:$HOME/.fzf/bin"
-  echo "🔍 fzf installed."
+  git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
+  yes y | ~/.fzf/install > .fzf.error 2>&1
+  if [[ -s .fzf.error ]]; then
+    echo "❌ fzf installation encountered errors."
+  else
+    echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
+    export PATH="$PATH:$HOME/.fzf/bin"
+    echo "🔍 fzf installed."
+  fi
 fi
 
 # Check if Homebrew is already installed
@@ -87,17 +82,18 @@ if command -v brew > /dev/null 2>&1; then
   echo "😴 Homebrew is already installed. Skipping."
 else
   echo "🍺 Installing Homebrew..."
-  # Install Oh My Posh (silenced, non-interactive)
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null 2>&1
-
-  if command -v brew > /dev/null 2>&1 ; then
-      # Add Homebrew to PATH in ~/.zshrc
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > .homebrew.error 2>&1
+  if [[ -s .homebrew.error ]]; then
+    echo "❌ Homebrew installation encountered errors."
+  else
+    if command -v brew > /dev/null 2>&1; then
       echo >> ~/.zshrc
       echo 'eval "$($(which brew) shellenv)"' >> ~/.zshrc
       eval "$($(which brew) shellenv)"
       echo "🍺 Homebrew installed."
-  else
-      echo "Homebrew install failed"
+    else
+      echo "❌ Homebrew install failed!"
+    fi
   fi
 fi
 
@@ -105,12 +101,14 @@ fi
 if command -v oh-my-posh > /dev/null 2>&1; then
   echo "😴 oh-my-posh is already installed. Skipping."
 else
-  echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"  # Changed line
-  # Install oh-my-posh (silenced)
-  brew install jandedobbeleer/oh-my-posh/oh-my-posh > /dev/null 2>&1
-  # Add oh-my-posh to PATH in ~/.zshrc
-  echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
-  echo "🍺 Oh My Posh brewed and ready."  # Changed line
+  echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"
+  brew install jandedobbeleer/oh-my-posh/oh-my-posh > .oh-my-posh.error 2>&1
+  if [[ -s .oh-my-posh.error ]]; then
+    echo "⚠️ oh-my-posh installation encountered errors."
+  else
+    echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
+    echo "🍺 Oh My Posh brewed and ready."
+  fi
 fi
 
 # Check if tmux plugin manager is already installed
@@ -118,9 +116,12 @@ if [[ -d ~/.tmux/plugins/tpm ]]; then
   echo "😴 tmux plugin manager is already installed. Skipping."
 else
   echo "🔌 Installing tmux plugin manager..."
-  # Install tmux plugin manager (silenced)
-  git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  echo "🔌 tmux plugin manager installed."
+  git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > .tmux-tpm.error 2>&1
+  if [[ -s .tmux-tpm.error ]]; then
+    echo "🚫 tmux plugin manager installation encountered errors."
+  else
+    echo "🔌 tmux plugin manager installed."
+  fi
 fi
 
 # --- Verification Tests ---
@@ -131,21 +132,21 @@ echo "✅ Verifying installations..."
 if fzf --version > /dev/null 2>&1; then
   echo "🎉 fzf is working correctly! Test with Ctrl+r"
 else
-  echo "❌ fzf installation failed!"
+  echo "❌ fzf verification failed!"
 fi
 
 # Test oh-my-posh
 if oh-my-posh --version > /dev/null 2>&1; then
   echo "🚀 oh-my-posh is working correctly!"
 else
-  echo "⚠️ oh-my-posh installation failed!"
+  echo "⚠️ oh-my-posh verification failed!"
 fi
 
 # Test tmux
 if tmux -V > /dev/null 2>&1; then
   echo "✅ tmux is working correctly!"
 else
-  echo "🚫 tmux installation failed!"
+  echo "🚫 tmux verification failed!"
 fi
 
 # --- Reboot Prompt ---
@@ -156,3 +157,33 @@ echo "🛠️ reboot system"
 echo "🛠️ zsh will install on next startup"
 echo "🛠️ install tmux plugins by starting tmux and press PREFIX + I."
 echo "-----------------------------------"
+
+# --- Error Display ---
+
+echo "-------------------Error Logs-------------------"
+
+if [[ -s .fzf.error ]]; then
+  echo "❌ fzf error log:"
+  cat .fzf.error
+  rm -f .fzf.error
+fi
+
+if [[ -s .homebrew.error ]]; then
+  echo "❌ Homebrew error log:"
+  cat .homebrew.error
+  rm -f .homebrew.error
+fi
+
+if [[ -s .oh-my-posh.error ]]; then
+  echo "⚠️ oh-my-posh error log:"
+  cat .oh-my-posh.error
+  rm -f .oh-my-posh.error
+fi
+
+if [[ -s .tmux-tpm.error ]]; then
+  echo "🚫 tmux plugin manager error log:"
+  cat .tmux-tpm.error
+  rm -f .tmux-tpm.error
+fi
+
+echo "------------------------------------------------"
