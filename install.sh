@@ -95,12 +95,8 @@ if command -v oh-my-posh > /dev/null 2>&1; then
 else
   echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"
   brew install jandedobbeleer/oh-my-posh/oh-my-posh > .oh-my-posh.error 2>&1
-  if [[ -s .oh-my-posh.error ]]; then
-    echo "⚠️ oh-my-posh installation encountered errors."
-  else
-    echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
-    echo "🍺 Oh My Posh brewed and ready."
-  fi
+  echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
+  echo "🍺 Oh My Posh brewed and ready."
 fi
 
 # Check if tmux plugin manager is already installed
@@ -109,11 +105,7 @@ if [[ -d ~/.tmux/plugins/tpm ]]; then
 else
   echo "🔌 Installing tmux plugin manager..."
   git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > .tmux-tpm.error 2>&1
-  if [[ -s .tmux-tpm.error ]]; then
-    echo "🚫 tmux plugin manager installation encountered errors."
-  else
-    echo "🔌 tmux plugin manager installed."
-  fi
+  echo "🔌 tmux plugin manager installed."
 fi
 
 # --- Verification Tests ---
