@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🛠️ Setting up terminal environment 🛠️"
+echo "\n🛠️ Setting up terminal environment 🛠️"
 echo "-----------------------------------"
 echo "This will setup:"
 echo "🛠️ zsh with config in zshrc"
