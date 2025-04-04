@@ -83,17 +83,14 @@ if command -v brew > /dev/null 2>&1; then
 else
   echo "🍺 Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > .homebrew.error 2>&1
-  if [[ -s .homebrew.error ]]; then
-    echo "❌ Homebrew installation encountered errors."
+  if command -v brew > /dev/null 2>&1; then
+    echo >> ~/.zshrc
+    echo 'eval "$($(which brew) shellenv)"' >> ~/.zshrc
+    eval "$($(which brew) shellenv)"
+    echo "🍺 Homebrew installed."
   else
-    if command -v brew > /dev/null 2>&1; then
-      echo >> ~/.zshrc
-      echo 'eval "$($(which brew) shellenv)"' >> ~/.zshrc
-      eval "$($(which brew) shellenv)"
-      echo "🍺 Homebrew installed."
-    else
-      echo "❌ Homebrew install failed!"
-    fi
+    echo "❌ Homebrew install failed!"
+  fi
   fi
 fi
 
