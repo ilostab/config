@@ -32,7 +32,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # Run oh-my-posh (now after PATH is set)
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
 
 # Keybindings
 # bindkey -e
