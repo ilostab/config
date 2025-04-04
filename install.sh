@@ -11,22 +11,21 @@ echo "🛠️ Homebrew"
 echo "🛠️ JetBrainsMono Nerd Font"
 echo "🛠️ fzf"
 echo "-----------------------------------"
+
+echo "⏳ Installing core packages... This may take a while."
+echo "👑 You might be promted for sudo (reason: apt update/install)"
+sudo apt update > /dev/null 2>&1
+sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential git > /dev/null 2>&1
+
 # --- Idempotency Checks ---
 
 # Check if Zsh is already the default shell
 if [[ "$SHELL" == *zsh* ]]; then
   echo "😴 Zsh is already the default shell. Skipping."
 else
-  echo "⏳ Installing packages... This may take a while."
-  echo "👑 You might be promted for sudo (reason: apt update)"
-  # Update and install packages (silenced)
-  sudo apt update > /dev/null 2>&1
-  sudo apt install -y zsh 7zip wget curl zoxide tmux fontconfig build-essential git > /dev/null 2>&1
-
   echo "👑 Moving to zsh terminal. You will be promted for sudo (reason: zsh)"
   # Change shell to zsh
   chsh $USER -s $(which zsh)
-
   echo "🎉 Zsh installed and set as default shell."
 fi
 
@@ -44,7 +43,6 @@ else
   sudo rm JetBrainsMono.zip
   sudo fc-cache -f -v > /dev/null 2>&1
   cd ..
-
   echo "🤓 Nerd Font installed."
 fi
 
@@ -78,11 +76,9 @@ else
   git clone -q --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   # Automate fzf installation prompts
   yes y | ~/.fzf/install > /dev/null 2>&1
-
   # Add fzf to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:\$HOME/.fzf/bin\"" >> ~/.zshrc
-  export PATH=\"\$PATH:\$HOME/.fzf/bin\
-  
+  export PATH="$PATH:$HOME/.fzf/bin"
   echo "🔍 fzf installed."
 fi
 
@@ -94,12 +90,15 @@ else
   # Install Oh My Posh (silenced, non-interactive)
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null 2>&1
 
-  # Add Homebrew to PATH in ~/.zshrc
-  echo >> ~/.zshrc
-  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  
-  echo "🍺 Homebrew installed."
+  if command -v brew > /dev/null 2>&1 ; then
+      # Add Homebrew to PATH in ~/.zshrc
+      echo >> ~/.zshrc
+      echo 'eval "$($(which brew) shellenv)"' >> ~/.zshrc
+      eval "$($(which brew) shellenv)"
+      echo "🍺 Homebrew installed."
+  else
+      echo "Homebrew install failed"
+  fi
 fi
 
 # Check if oh-my-posh is already installed
@@ -109,10 +108,8 @@ else
   echo "🍺 Brewing Oh My Posh... (this is a difficult brew and takes time 🍺🍺🍺)"  # Changed line
   # Install oh-my-posh (silenced)
   brew install jandedobbeleer/oh-my-posh/oh-my-posh > /dev/null 2>&1
-
   # Add oh-my-posh to PATH in ~/.zshrc
   echo "export PATH=\"\$PATH:/usr/local/bin\"" >> ~/.zshrc
-
   echo "🍺 Oh My Posh brewed and ready."  # Changed line
 fi
 
@@ -123,10 +120,8 @@ else
   echo "🔌 Installing tmux plugin manager..."
   # Install tmux plugin manager (silenced)
   git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
   echo "🔌 tmux plugin manager installed."
 fi
-
 
 # --- Verification Tests ---
 
