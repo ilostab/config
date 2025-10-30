@@ -8,8 +8,8 @@ export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -26,13 +26,29 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 
+# ===================================================================
+# --- START RUNTIME OPTIMIZATION ---
+# Use Zinit to load and cache the output of eval commands
+# This makes shell startup MUCH faster.
+
+zinit load \
+    atinit"eval \"\$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)\"" \
+    lucid
+
+zinit load \
+    atinit"eval \"\$(fzf --zsh)\"" \
+    lucid
+
+zinit load \
+    atinit"eval \"\$(zoxide init --cmd cd zsh)\"" \
+    lucid
+# --- END RUNTIME OPTIMIZATION ---
+# ===================================================================
+
 # Load completions
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
-
-# Run oh-my-posh (now after PATH is set)
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
 
 # Keybindings
 # bindkey -e
@@ -57,7 +73,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':ff-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Key binding
 bindkey "^[[1;5C" forward-word
@@ -70,10 +86,8 @@ alias ll='ls -l'
 alias lh='ls -lh'
 alias la='ls -lah'
 
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-
-# Removed duplicate eval and export commands
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# --- Removed duplicate/slow eval and source commands ---
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+# eval "$(fzf --zsh)"
+# eval "$(zoxide init --cmd cd zsh)"
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
