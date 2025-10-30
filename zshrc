@@ -31,17 +31,20 @@ zinit snippet OMZP::command-not-found
 # Use Zinit to load and cache the output of eval commands
 # This makes shell startup MUCH faster.
 
-zinit load \
-    atinit"eval \"\$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)\"" \
-    lucid
+# Correct syntax: 'zinit ice ...' sets the options
+# 'zinit snippet /dev/null' triggers them without loading a real plugin.
 
-zinit load \
-    atinit"eval \"\$(fzf --zsh)\"" \
-    lucid
+zinit ice lucid \
+    atinit"eval \"\$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)\""
+zinit snippet /dev/null
 
-zinit load \
-    atinit"eval \"\$(zoxide init --cmd cd zsh)\"" \
-    lucid
+zinit ice lucid \
+    atinit"eval \"\$(fzf --zsh)\""
+zinit snippet /dev/null
+
+zinit ice lucid \
+    atinit"eval \"\$(zoxide init --cmd cd zsh)\""
+zinit snippet /dev/null
 # --- END RUNTIME OPTIMIZATION ---
 # ===================================================================
 
